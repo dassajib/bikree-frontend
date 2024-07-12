@@ -1,14 +1,9 @@
+import React from 'react';
 import './App.css';
-import { Button, Flex } from 'antd';
+import Index from './Index/Index';
 
-function App() {
-  return (
-    <>
-      <Flex gap="small" wrap>
-        <Button type="primary">Helllllo Dev.</Button>
-      </Flex>
-    </>
-  );
-}
+const App: React.FC = () => {
+  return <Index />;
+};
 
 export default App;
