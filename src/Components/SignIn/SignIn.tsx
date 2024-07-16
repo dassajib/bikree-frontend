@@ -9,7 +9,7 @@ const SignIn: React.FC = () => {
     <div className="signin">
       <Form
         name="normal_login"
-        className="login-form"
+        className="signin-form"
         initialValues={{
           remember: true,
         }}
@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="form-button"
           >
             Sign in
           </Button>

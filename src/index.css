@@ -6,8 +6,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* login */
-.signin, .signup {
+/* signin/signup */
+.signin,
+.signup,
+.create-shop {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +17,15 @@
   width: 100vw;
 }
 
-.login-form {
+.signin-form,
+.signup-form,
+.create-shop-form {
   background-color: rgba(255, 255, 255, 0.33);
   box-shadow: 0px 8px 32px 0 rgba(0, 0, 255, 0.33);
   padding: 60px 60px 60px 60px;
   border-radius: 10px;
 }
 
-.login-form-button {
+.form-button {
   width: 100%;
 }
-

@@ -1,16 +1,45 @@
-import { Button, Form, Input, Typography } from 'antd';
+import { Button, Form, Input, message, Typography } from 'antd';
 import React from 'react';
 import { CiUser } from 'react-icons/ci';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
+import { useSignupStore } from '../../store/useSignUpStore';
+import { validatePasswords } from '../../utils/validation';
+import { useSignUp } from '../../hooks/useSignUp';
 
 const SignUp: React.FC = () => {
+  const {
+    firstName,
+    lastName,
+    phone,
+    password,
+    confirmPassword,
+    setFirstName,
+    setLastName,
+    setPhone,
+    setPassword,
+    setConfirmPassword,
+  } = useSignupStore();
+
+  const { mutate } = useSignUp();
+
+  const onFinish = () => {
+    const error = validatePasswords(password, confirmPassword);
+    if (error) {
+      message.error(error);
+      return;
+    }
+
+    mutate({ firstName, lastName, phone, password, confirmPassword });
+  };
+
   return (
     <div className="signup">
       <Form
-        name="normal_login"
-        className="login-form"
+        onFinish={onFinish}
+        name="sign-up"
+        className="signup-form"
         initialValues={{
           remember: true,
         }}
@@ -30,7 +59,12 @@ const SignUp: React.FC = () => {
             },
           ]}
         >
-          <Input prefix={<CiUser size={20} />} placeholder="First Name" />
+          <Input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            prefix={<CiUser size={20} />}
+            placeholder="First Name"
+          />
         </Form.Item>
         <Form.Item
           name="last-name"
@@ -41,7 +75,12 @@ const SignUp: React.FC = () => {
             },
           ]}
         >
-          <Input prefix={<CiUser size={20} />} placeholder="Last Name" />
+          <Input
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            prefix={<CiUser size={20} />}
+            placeholder="Last Name"
+          />
         </Form.Item>
         <Form.Item
           name="phone"
@@ -53,6 +92,8 @@ const SignUp: React.FC = () => {
           ]}
         >
           <Input
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             prefix={<IoIosPhonePortrait size={20} />}
             placeholder="Phone Number"
           />
@@ -67,6 +108,8 @@ const SignUp: React.FC = () => {
           ]}
         >
           <Input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             prefix={<TbPassword size={20} />}
             type="password"
             placeholder="Password"
@@ -82,9 +125,11 @@ const SignUp: React.FC = () => {
           ]}
         >
           <Input
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             prefix={<TbPassword size={20} />}
             type="password"
-            placeholder="Password"
+            placeholder="Confirm Password"
           />
         </Form.Item>
 
@@ -92,7 +137,7 @@ const SignUp: React.FC = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="form-button"
           >
             Sign Up
           </Button>
