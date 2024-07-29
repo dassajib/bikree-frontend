@@ -1,6 +1,8 @@
 import { Button, Form, Input, Typography } from 'antd';
 import { CiShop } from 'react-icons/ci';
 
+import './CreateShop.css';
+
 const CreateShop = () => {
   return (
     <div className="create-shop">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import bikreeLogo from '../assets/bikreeLogo.jpeg';
 import { AiFillFile } from 'react-icons/ai';
 import { MdDashboard } from 'react-icons/md';
@@ -38,7 +38,7 @@ const items: MenuItem[] = [
   getItem('Reports', '5', <AiFillFile size={18} />, 'reports'),
 ];
 
-const AppLayout: React.FC = () => {
+const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },

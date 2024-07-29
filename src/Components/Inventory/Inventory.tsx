@@ -1,6 +1,4 @@
-import React from "react"
-
-const Inventory: React.FC = () => {
+const Inventory = () => {
   return (
     <div>Inventory</div>
   )

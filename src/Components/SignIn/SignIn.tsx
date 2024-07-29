@@ -1,14 +1,15 @@
 import { Button, Form, Input, Typography } from 'antd';
-import React from 'react';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
-const SignIn: React.FC = () => {
+import "./SignIn.css";
+
+const SignIn = () => {
   return (
     <div className="signin">
       <Form
-        name="normal_login"
+        name="sign-in"
         className="signin-form"
         initialValues={{
           remember: true,
@@ -51,11 +52,7 @@ const SignIn: React.FC = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="form-button"
-          >
+          <Button type="primary" htmlType="submit" className="form-button">
             Sign in
           </Button>
         </Form.Item>

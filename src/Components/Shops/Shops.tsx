@@ -1,6 +1,4 @@
-import React from "react"
-
-const Shops: React.FC = () => {
+const Shops = () => {
   return (
     <div>Shop</div>
   )

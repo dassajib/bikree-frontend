@@ -1,43 +1,37 @@
 import { Button, Form, Input, message, Typography } from 'antd';
-import React from 'react';
 import { CiUser } from 'react-icons/ci';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
-import { useSignupStore } from '../../store/useSignUpStore';
+import { Controller, useForm } from 'react-hook-form';
+
 import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
+import { SignupData } from '../../interface';
+import './SignUp.css';
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const {
-    firstName,
-    lastName,
-    phone,
-    password,
-    confirmPassword,
-    setFirstName,
-    setLastName,
-    setPhone,
-    setPassword,
-    setConfirmPassword,
-  } = useSignupStore();
-
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupData>();
   const { mutate } = useSignUp();
 
-  const onFinish = () => {
-    const error = validatePasswords(password, confirmPassword);
+  const onSubmit = (data: SignupData) => {
+    const error = validatePasswords(data.password, data.confirmPassword);
     if (error) {
       message.error(error);
       return;
     }
 
-    mutate({ firstName, lastName, phone, password, confirmPassword });
+    mutate(data);
   };
 
   return (
     <div className="signup">
       <Form
-        onFinish={onFinish}
+        onFinish={handleSubmit(onSubmit)}
         name="sign-up"
         className="signup-form"
         initialValues={{
@@ -50,95 +44,106 @@ const SignUp: React.FC = () => {
         >
           Sign Up to Bikree
         </Typography.Title>
+
         <Form.Item
-          name="first-name"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your First Name!',
-            },
-          ]}
+          status={errors.firstName ? 'error' : ''}
+          help={errors.firstName?.message}
         >
-          <Input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            prefix={<CiUser size={20} />}
-            placeholder="First Name"
+          <Controller
+            name="firstName"
+            control={control}
+            rules={{ required: 'Please input your First Name!' }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                prefix={<CiUser size={20} />}
+                placeholder="First Name"
+                status={fieldState.invalid ? 'error' : ''}
+              />
+            )}
           />
         </Form.Item>
+
         <Form.Item
-          name="last-name"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Last Name!',
-            },
-          ]}
+          status={errors.lastName ? 'error' : ''}
+          help={errors.lastName?.message}
         >
-          <Input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            prefix={<CiUser size={20} />}
-            placeholder="Last Name"
+          <Controller
+            name="lastName"
+            control={control}
+            rules={{ required: 'Please input your Last Name!' }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                prefix={<CiUser size={20} />}
+                placeholder="Last Name"
+                status={fieldState.invalid ? 'error' : ''}
+              />
+            )}
           />
         </Form.Item>
+
         <Form.Item
-          name="phone"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Phone Number!',
-            },
-          ]}
+          status={errors.phone ? 'error' : ''}
+          help={errors.phone?.message}
         >
-          <Input
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            prefix={<IoIosPhonePortrait size={20} />}
-            placeholder="Phone Number"
+          <Controller
+            name="phone"
+            control={control}
+            rules={{ required: 'Please input your Phone Number!' }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                prefix={<IoIosPhonePortrait size={20} />}
+                placeholder="Phone Number"
+                status={fieldState.invalid ? 'error' : ''}
+              />
+            )}
           />
         </Form.Item>
+
         <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Password!',
-            },
-          ]}
+          status={errors.password ? 'error' : ''}
+          help={errors.password?.message}
         >
-          <Input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            prefix={<TbPassword size={20} />}
-            type="password"
-            placeholder="Password"
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: 'Please input your Password!' }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                prefix={<TbPassword size={20} />}
+                type="password"
+                placeholder="Password"
+                status={fieldState.invalid ? 'error' : ''}
+              />
+            )}
           />
         </Form.Item>
+
         <Form.Item
-          name="confirm-password"
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your Password!',
-            },
-          ]}
+          status={errors.confirmPassword ? 'error' : ''}
+          help={errors.confirmPassword?.message}
         >
-          <Input
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            prefix={<TbPassword size={20} />}
-            type="password"
-            placeholder="Confirm Password"
+          <Controller
+            name="confirmPassword"
+            control={control}
+            rules={{ required: 'Please confirm your Password!' }}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                prefix={<TbPassword size={20} />}
+                type="password"
+                placeholder="Confirm Password"
+                status={fieldState.invalid ? 'error' : ''}
+              />
+            )}
           />
         </Form.Item>
 
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="form-button"
-          >
+          <Button type="primary" htmlType="submit" className="form-button">
             Sign Up
           </Button>
         </Form.Item>

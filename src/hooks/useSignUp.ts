@@ -1,11 +1,13 @@
 import { message } from 'antd';
-import { signUp } from '../api/signUp';
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
-import { SignupData, SignupResponse } from '../interface';
 import { useNavigate } from 'react-router-dom';
+
+import { signUp } from '../api/signUp';
+import { SignupData, SignupResponse } from '../interface';
 
 export const useSignUp = (): UseMutationResult<SignupResponse, Error, SignupData> => {
     const navigate = useNavigate();
+    
     return useMutation<SignupResponse, Error, SignupData>({
         mutationFn: (data) => signUp(data),
         onSuccess: () => {
