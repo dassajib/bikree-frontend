@@ -7,18 +7,17 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
-import { SignupData } from '../../interface';
-import './SignUp.css';
+import { SignupDataInterface } from '../../interface/SignUp';
 
 const SignUp = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupData>();
+  } = useForm<SignupDataInterface>();
   const { mutate } = useSignUp();
 
-  const onSubmit = (data: SignupData) => {
+  const onSubmit = (data: SignupDataInterface) => {
     const error = validatePasswords(data.password, data.confirmPassword);
     if (error) {
       message.error(error);
@@ -29,11 +28,16 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup">
+    <div className="flex justify-center items-center h-screen w-screen">
       <Form
         onFinish={handleSubmit(onSubmit)}
         name="sign-up"
-        className="signup-form"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.33)',
+          boxShadow: '0px 8px 32px 0 rgba(0, 0, 255, 0.33)',
+          padding: '60px 60px 60px 60px',
+          borderRadius: '10px',
+        }}
         initialValues={{
           remember: true,
         }}
@@ -143,7 +147,7 @@ const SignUp = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="form-button">
+          <Button type="primary" htmlType="submit" className="w-full">
             Sign Up
           </Button>
         </Form.Item>

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 import { SIGN_UP_URL } from '../config';
-import { SignupData } from '../interface';
+import { SignupDataInterface } from '../interface/SignUp';
 
-export const signUp = async (data: SignupData) => {
+export const signUp = async (data: SignupDataInterface) => {
     const payload = {
         first_name: data.firstName,
         last_name: data.lastName,

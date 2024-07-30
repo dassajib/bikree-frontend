@@ -3,14 +3,17 @@ import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
-import "./SignIn.css";
-
 const SignIn = () => {
   return (
-    <div className="signin">
+    <div className="flex justify-center items-center h-screen w-screen">
       <Form
         name="sign-in"
-        className="signin-form"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.33)',
+          boxShadow: '0px 8px 32px 0 rgba(0, 0, 255, 0.33)',
+          padding: '60px 60px 60px 60px',
+          borderRadius: '10px',
+        }}
         initialValues={{
           remember: true,
         }}
@@ -52,7 +55,7 @@ const SignIn = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="form-button">
+          <Button type="primary" htmlType="submit" className="w-full">
             Sign in
           </Button>
         </Form.Item>

@@ -1,14 +1,17 @@
 import { Button, Form, Input, Typography } from 'antd';
 import { CiShop } from 'react-icons/ci';
 
-import './CreateShop.css';
-
 const CreateShop = () => {
   return (
-    <div className="create-shop">
+    <div className="flex justify-center items-center w-screen h-screen">
       <Form
         name="create-shop"
-        className="create-shop-form"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.33)',
+          boxShadow: '0px 8px 32px 0 rgba(0, 0, 255, 0.33)',
+          padding: '60px 60px 60px 60px',
+          borderRadius: '10px',
+        }}
         initialValues={{
           remember: true,
         }}
@@ -31,7 +34,7 @@ const CreateShop = () => {
           <Input prefix={<CiShop size={20} />} placeholder="Shop Name" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="form-button">
+          <Button type="primary" htmlType="submit" className="w-full">
             Create
           </Button>
         </Form.Item>
