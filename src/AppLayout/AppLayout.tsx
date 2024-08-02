@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import bikreeLogo from '../assets/bikreeLogo.jpeg';
 import { AiFillFile } from 'react-icons/ai';
 import { MdDashboard } from 'react-icons/md';
@@ -38,7 +38,7 @@ const items: MenuItem[] = [
   getItem('Reports', '5', <AiFillFile size={18} />, 'reports'),
 ];
 
-const AppLayout: React.FC = () => {
+const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -57,8 +57,15 @@ const AppLayout: React.FC = () => {
           <Flex
             justify="space-evenly"
             align="center"
-            style={{ cursor: 'pointer', marginTop: '10px' }}
+            className="cursor-pointer mt-3"
           >
+            <Image
+              preview={false}
+              src={bikreeLogo}
+              width={40}
+              height={40}
+              className="object-cover rounded"
+            />
             {!collapsed && (
               <Typography.Title
                 level={4}
@@ -67,20 +74,13 @@ const AppLayout: React.FC = () => {
                 Bikree
               </Typography.Title>
             )}
-            <Image
-              preview={false}
-              src={bikreeLogo}
-              width={40}
-              height={40}
-              style={{ objectFit: 'cover' }}
-            />
           </Flex>
         </Link>
         <Menu
           theme="dark"
           defaultSelectedKeys={['1']}
           items={items}
-          style={{ marginTop: '16px' }}
+          className='mt-4'
         />
       </Sider>
       {/* side bar end */}
@@ -106,7 +106,7 @@ const AppLayout: React.FC = () => {
             {<Outlet />}
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Footer className='text-center'>
           ©{new Date().getFullYear()} Created by Bikree
         </Footer>
       </Layout>

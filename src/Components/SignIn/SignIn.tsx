@@ -1,26 +1,38 @@
-import { Button, Form, Input, Typography } from 'antd';
-import React from 'react';
+import { Button, Form, Image, Input, Typography } from 'antd';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
-const SignIn: React.FC = () => {
+import bikreeLogo from '../../assets/bikreeLogo.jpeg';
+
+const SignIn = () => {
   return (
-    <div className="signin">
+    <div className="flex justify-center items-center h-screen w-screen">
       <Form
-        name="normal_login"
-        className="login-form"
+        name="sign-in"
+        className="sm:shadow-2xl rounded-xl w-80"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.33)',
+          padding: '30px 40px 30px 40px',
+        }}
         initialValues={{
           remember: true,
         }}
       >
-        <Typography.Title
-          level={4}
-          style={{ textAlign: 'center', marginBottom: '20px' }}
-        >
+        <div className="flex justify-center">
+          <Image
+            className="object-cover rounded"
+            preview={false}
+            src={bikreeLogo}
+            height={35}
+            width={35}
+          />
+        </div>
+        <Typography.Title level={4} className="text-center mt-5">
           Sign In to Bikree
         </Typography.Title>
         <Form.Item
+          className="mt-5"
           name="phone"
           rules={[
             {
@@ -51,15 +63,13 @@ const SignIn: React.FC = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" htmlType="submit" className="w-full">
             Sign in
           </Button>
         </Form.Item>
-        <Link to="/signup">Haven't account yet?</Link>
+        <div className="text-center text-cyan-700">
+          <Link to="/signup">Haven't account yet?</Link>
+        </div>
       </Form>
     </div>
   );

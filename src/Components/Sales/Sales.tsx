@@ -1,6 +1,4 @@
-import React from "react"
-
-const Sales: React.FC = () => {
+const Sales= () => {
   return (
     <div>Sales</div>
   )
