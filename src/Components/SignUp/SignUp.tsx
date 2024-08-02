@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Typography } from 'antd';
+import { Button, Form, Image, Input, message, Typography } from 'antd';
 import { CiUser } from 'react-icons/ci';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
@@ -8,6 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
 import { SignupDataInterface } from '../../interface/SignUp';
+import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 
 const SignUp = () => {
   const {
@@ -32,24 +33,30 @@ const SignUp = () => {
       <Form
         onFinish={handleSubmit(onSubmit)}
         name="sign-up"
+        className="sm:shadow-2xl rounded-xl w-80"
         style={{
           backgroundColor: 'rgba(255, 255, 255, 0.33)',
-          boxShadow: '0px 8px 32px 0 rgba(0, 0, 255, 0.33)',
-          padding: '60px 60px 60px 60px',
-          borderRadius: '10px',
+          padding: '30px 40px 30px 40px',
         }}
         initialValues={{
           remember: true,
         }}
       >
-        <Typography.Title
-          level={4}
-          style={{ textAlign: 'center', marginBottom: '20px' }}
-        >
+        <div className="flex justify-center">
+          <Image
+            className="object-cover rounded"
+            preview={false}
+            src={bikreeLogo}
+            height={35}
+            width={35}
+          />
+        </div>
+        <Typography.Title level={4} className="text-center mt-5">
           Sign Up to Bikree
         </Typography.Title>
 
         <Form.Item
+          className="mt-5"
           status={errors.firstName ? 'error' : ''}
           help={errors.firstName?.message}
         >
@@ -151,7 +158,9 @@ const SignUp = () => {
             Sign Up
           </Button>
         </Form.Item>
-        <Link to="/">Have an account?</Link>
+        <div className="text-center text-cyan-700">
+          <Link to="/">Have an account?</Link>
+        </div>
       </Form>
     </div>
   );

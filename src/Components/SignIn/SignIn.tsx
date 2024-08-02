@@ -1,30 +1,38 @@
-import { Button, Form, Input, Typography } from 'antd';
+import { Button, Form, Image, Input, Typography } from 'antd';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
+
+import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 
 const SignIn = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
       <Form
         name="sign-in"
+        className="sm:shadow-2xl rounded-xl w-80"
         style={{
           backgroundColor: 'rgba(255, 255, 255, 0.33)',
-          boxShadow: '0px 8px 32px 0 rgba(0, 0, 255, 0.33)',
-          padding: '60px 60px 60px 60px',
-          borderRadius: '10px',
+          padding: '30px 40px 30px 40px',
         }}
         initialValues={{
           remember: true,
         }}
       >
-        <Typography.Title
-          level={4}
-          style={{ textAlign: 'center', marginBottom: '20px' }}
-        >
+        <div className="flex justify-center">
+          <Image
+            className="object-cover rounded"
+            preview={false}
+            src={bikreeLogo}
+            height={35}
+            width={35}
+          />
+        </div>
+        <Typography.Title level={4} className="text-center mt-5">
           Sign In to Bikree
         </Typography.Title>
         <Form.Item
+          className="mt-5"
           name="phone"
           rules={[
             {
@@ -59,7 +67,9 @@ const SignIn = () => {
             Sign in
           </Button>
         </Form.Item>
-        <Link to="/signup">Haven't account yet?</Link>
+        <div className="text-center text-cyan-700">
+          <Link to="/signup">Haven't account yet?</Link>
+        </div>
       </Form>
     </div>
   );
