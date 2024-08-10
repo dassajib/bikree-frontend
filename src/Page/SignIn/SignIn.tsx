@@ -10,11 +10,7 @@ const SignIn = () => {
     <div className="flex justify-center items-center h-screen w-screen">
       <Form
         name="sign-in"
-        className="sm:shadow-2xl rounded-xl w-80"
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.33)',
-          padding: '30px 40px 30px 40px',
-        }}
+        className="sm:shadow-2xl bg-white rounded-xl w-80 p-8 px-10"
         initialValues={{
           remember: true,
         }}
@@ -55,7 +51,7 @@ const SignIn = () => {
             },
           ]}
         >
-          <Input
+          <Input.Password
             prefix={<TbPassword size={20} />}
             type="password"
             placeholder="Password"

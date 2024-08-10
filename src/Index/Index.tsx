@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import SignIn from '../Components/SignIn/SignIn';
-import SignUp from '../Components/SignUp/SignUp';
+import SignIn from '../Page/SignIn/SignIn';
+import SignUp from '../Page/SignUp/SignUp';
 import AppLayout from '../AppLayout/AppLayout';
 import Dashboard from '../Components/Dashboard/Dashboard';
-import Shops from '../Components/Shops/Shops';
+import Shops from '../Page/Shops/Shops';
 import Inventory from '../Components/Inventory/Inventory';
 import Sales from '../Components/Sales/Sales';
 import Reports from '../Components/Reports/Reports';
-import CreateShop from '../Components/Shops/CreateShop';
+import CreateShop from '../Page/Shops/CreateShop';
 
 const Index = () => {
   return (

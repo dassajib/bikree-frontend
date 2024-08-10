@@ -11,6 +11,10 @@ import { SignupDataInterface } from '../../interface/SignUp';
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 
 const SignUp = () => {
+  // Initialize the Ant Design form with useForm
+  const [form] = Form.useForm();
+
+  // Initialize react-hook-form
   const {
     control,
     handleSubmit,
@@ -31,13 +35,10 @@ const SignUp = () => {
   return (
     <div className="flex justify-center items-center h-screen w-screen">
       <Form
+        form={form}
         onFinish={handleSubmit(onSubmit)}
         name="sign-up"
-        className="sm:shadow-2xl rounded-xl w-80"
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.33)',
-          padding: '30px 40px 30px 40px',
-        }}
+        className="sm:shadow-2xl bg-white rounded-xl w-80 p-8 px-10"
         initialValues={{
           remember: true,
         }}
@@ -122,7 +123,7 @@ const SignUp = () => {
             control={control}
             rules={{ required: 'Please input your Password!' }}
             render={({ field, fieldState }) => (
-              <Input
+              <Input.Password
                 {...field}
                 prefix={<TbPassword size={20} />}
                 type="password"
@@ -142,7 +143,7 @@ const SignUp = () => {
             control={control}
             rules={{ required: 'Please confirm your Password!' }}
             render={({ field, fieldState }) => (
-              <Input
+              <Input.Password
                 {...field}
                 prefix={<TbPassword size={20} />}
                 type="password"
