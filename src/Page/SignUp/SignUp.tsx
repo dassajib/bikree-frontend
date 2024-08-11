@@ -20,6 +20,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignupDataInterface>();
+  
   const { mutate } = useSignUp();
 
   const onSubmit = (data: SignupDataInterface) => {
