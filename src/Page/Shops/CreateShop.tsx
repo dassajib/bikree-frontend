@@ -1,5 +1,7 @@
-import { Button, Form, Input, Typography } from 'antd';
+import { Button, Form, Image, Input, Typography } from 'antd';
 import { CiShop } from 'react-icons/ci';
+
+import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 
 const CreateShop = () => {
   return (
@@ -11,15 +13,23 @@ const CreateShop = () => {
           remember: true,
         }}
       >
+        <div className="flex justify-center">
+          <Image
+            className="object-cover rounded"
+            preview={false}
+            src={bikreeLogo}
+            height={35}
+            width={35}
+          />
+        </div>
         <Typography.Title
           level={4}
-          // style={{ textAlign: 'center', marginBottom: '20px' }}
-          className='text-center'
+          className="text-center mt-5"
         >
           Create Your Shop
         </Typography.Title>
         <Form.Item
-        className='mt-5'
+          className="mt-5"
           name="shop-name"
           rules={[
             {

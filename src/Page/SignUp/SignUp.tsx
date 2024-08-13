@@ -53,7 +53,7 @@ const SignUp = () => {
           />
         </div>
         <Typography.Title level={4} className="text-center mt-5">
-          Sign Up to Bikree
+          Sign Up 
         </Typography.Title>
 
         <Form.Item

@@ -25,7 +25,7 @@ const SignIn = () => {
           />
         </div>
         <Typography.Title level={4} className="text-center mt-5">
-          Sign In to Bikree
+          Sign In 
         </Typography.Title>
         <Form.Item
           className="mt-5"
