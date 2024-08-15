@@ -33,12 +33,12 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="min-h-screen bg-custom-gradient flex justify-center items-center">
       <Form
         form={form}
         onFinish={handleSubmit(onSubmit)}
         name="sign-up"
-        className="sm:shadow-2xl bg-white rounded-xl w-80 p-8 px-10"
+        className="bg-custom-gradient shadow-custom-shadow rounded-xl w-80 p-8 px-10"
         initialValues={{
           remember: true,
         }}
@@ -53,13 +53,17 @@ const SignUp = () => {
           />
         </div>
         <Typography.Title level={4} className="text-center mt-5">
-          Sign Up to Bikree
+          <p className="text-white text-3xl font-bold">Sign Up</p>
         </Typography.Title>
 
         <Form.Item
           className="mt-5"
           status={errors.firstName ? 'error' : ''}
-          help={errors.firstName?.message}
+          help={
+            errors.firstName ? (
+              <span className="text-white">{errors.firstName?.message}</span>
+            ) : null
+          }
         >
           <Controller
             name="firstName"
@@ -78,7 +82,11 @@ const SignUp = () => {
 
         <Form.Item
           status={errors.lastName ? 'error' : ''}
-          help={errors.lastName?.message}
+          help={
+            errors.lastName ? (
+              <span className="text-white">{errors.lastName?.message}</span>
+            ) : null
+          }
         >
           <Controller
             name="lastName"
@@ -97,7 +105,11 @@ const SignUp = () => {
 
         <Form.Item
           status={errors.phone ? 'error' : ''}
-          help={errors.phone?.message}
+          help={
+            errors.phone ? (
+              <span className="text-white">{errors.phone?.message}</span>
+            ) : null
+          }
         >
           <Controller
             name="phone"
@@ -116,7 +128,11 @@ const SignUp = () => {
 
         <Form.Item
           status={errors.password ? 'error' : ''}
-          help={errors.password?.message}
+          help={
+            errors.password ? (
+              <span className="text-white">{errors.password?.message}</span>
+            ) : null
+          }
         >
           <Controller
             name="password"
@@ -136,7 +152,11 @@ const SignUp = () => {
 
         <Form.Item
           status={errors.confirmPassword ? 'error' : ''}
-          help={errors.confirmPassword?.message}
+          help={
+            errors.confirmPassword ? (
+              <span className="text-white">{errors.confirmPassword?.message}</span>
+            ) : null
+          }
         >
           <Controller
             name="confirmPassword"
@@ -155,11 +175,11 @@ const SignUp = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full">
+          <Button type="primary" htmlType="submit" className="w-full font-bold">
             Sign Up
           </Button>
         </Form.Item>
-        <div className="text-center text-cyan-700">
+        <div className="text-center text-white">
           <Link to="/">Have an account?</Link>
         </div>
       </Form>

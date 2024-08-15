@@ -7,10 +7,10 @@ import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 
 const SignIn = () => {
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="min-h-screen bg-custom-gradient flex justify-center items-center">
       <Form
         name="sign-in"
-        className="sm:shadow-2xl bg-white rounded-xl w-80 p-8 px-10"
+        className="shadow-custom-shadow bg-custom-gradient rounded-xl w-80 p-8 px-10"
         initialValues={{
           remember: true,
         }}
@@ -25,7 +25,7 @@ const SignIn = () => {
           />
         </div>
         <Typography.Title level={4} className="text-center mt-5">
-          Sign In to Bikree
+          <p className="text-white text-3xl font-bold">Sign Up</p>
         </Typography.Title>
         <Form.Item
           className="mt-5"
@@ -59,11 +59,11 @@ const SignIn = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full">
-            Sign in
+          <Button type="primary" htmlType="submit" className="w-full font-bold">
+            Sign In
           </Button>
         </Form.Item>
-        <div className="text-center text-cyan-700">
+        <div className="text-center text-white">
           <Link to="/signup">Haven't account yet?</Link>
         </div>
       </Form>
