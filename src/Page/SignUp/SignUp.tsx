@@ -9,7 +9,7 @@ import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
 import { SignupDataInterface } from '../../interface/SignUp';
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
-import greetings from '../../assets/undraw_blooming_re_2kc4.svg';
+import AuthSideImage from '../../Components/AuthSideImage/AuthSideImage';
 
 const SignUp = () => {
   // Initialize the Ant Design form with useForm
@@ -170,15 +170,8 @@ const SignUp = () => {
           </div>
         </Form>
       </div>
-      <div className="hidden md:block w-full md:w-1/2 h-full bg-slate-200 p-20">
-        <div className="w-full h-full flex items-center justify-center">
-          <Image
-            src={greetings}
-            preview={false}
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </div>
+      
+      <AuthSideImage />
     </div>
   );
 };
