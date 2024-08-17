@@ -1,18 +1,17 @@
 import { Button, Form, Image, Input, Typography } from 'antd';
-import { IoIosPhonePortrait } from 'react-icons/io';
-import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
-import AuthSideImage from '../../Components/AuthSideImage/AuthSideImage';
+import signInGreetings from '../../assets/The Little Things - Working.png';
 
 const SignIn = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between h-screen overflow-hidden">
       <div className="flex justify-center items-center md:w-1/2">
         <Form
+          layout="vertical"
           name="sign-in"
-          className="rounded-xl w-80 p-8 px-10"
+          className="rounded-xl w-96 p-8 px-10"
           initialValues={{
             remember: true,
           }}
@@ -26,11 +25,12 @@ const SignIn = () => {
               width={35}
             />
           </div>
-          <Typography.Title level={4} className="text-center mt-5">
-            <p className="text-3xl font-bold">Sign In</p>
+          <Typography.Title level={4} className="text-center mt-4">
+            <p className="text-2xl font-semibold">Sign In</p>
           </Typography.Title>
           <Form.Item
-            className="mt-5"
+            label="Phone"
+            className="mb-3"
             name="phone"
             rules={[
               {
@@ -39,12 +39,10 @@ const SignIn = () => {
               },
             ]}
           >
-            <Input
-              prefix={<IoIosPhonePortrait size={20} />}
-              placeholder="Phone Number"
-            />
+            <Input placeholder="Phone Number" />
           </Form.Item>
           <Form.Item
+            label="Password"
             name="password"
             rules={[
               {
@@ -53,11 +51,7 @@ const SignIn = () => {
               },
             ]}
           >
-            <Input.Password
-              prefix={<TbPassword size={20} />}
-              type="password"
-              placeholder="Password"
-            />
+            <Input.Password type="password" placeholder="Password" />
           </Form.Item>
 
           <Form.Item>
@@ -74,8 +68,16 @@ const SignIn = () => {
           </div>
         </Form>
       </div>
-      
-      <AuthSideImage />
+
+      <div className="hidden md:block w-full md:w-1/2 h-full bg-slate-200">
+        <div className="w-full h-full flex items-center justify-center">
+          <Image
+            src={signInGreetings}
+            preview={false}
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </div>
     </div>
   );
 };

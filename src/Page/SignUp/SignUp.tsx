@@ -1,7 +1,4 @@
 import { Button, Form, Image, Input, message, Typography } from 'antd';
-import { CiUser } from 'react-icons/ci';
-import { IoIosPhonePortrait } from 'react-icons/io';
-import { TbPassword } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -9,7 +6,7 @@ import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
 import { SignupDataInterface } from '../../interface/SignUp';
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
-import AuthSideImage from '../../Components/AuthSideImage/AuthSideImage';
+import signUpGreetings from '../../assets/The Little Things - UI Design.png';
 
 const SignUp = () => {
   // Initialize the Ant Design form with useForm
@@ -34,13 +31,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between h-screen overflow-hidden">
+    <div className="flex flex-col md:flex-row items-center justify-between h-screen">
       <div className="flex justify-center items-center md:w-1/2">
         <Form
+          layout="vertical"
           form={form}
           onFinish={handleSubmit(onSubmit)}
           name="sign-up"
-          className="rounded-xl w-80 p-8 px-10"
+          className="rounded-xl w-96 p-8 px-10"
           initialValues={{
             remember: true,
           }}
@@ -54,12 +52,13 @@ const SignUp = () => {
               width={35}
             />
           </div>
-          <Typography.Title level={4} className="text-center mt-5">
-            <p className="text-3xl font-bold">Sign Up</p>
+          <Typography.Title level={4} className="text-center mt-4">
+            <p className="text-2xl font-semibold">Sign Up</p>
           </Typography.Title>
 
           <Form.Item
-            className="mt-5"
+            label="First Name"
+            className="mb-3"
             status={errors.firstName ? 'error' : ''}
             help={errors.firstName?.message}
           >
@@ -70,7 +69,6 @@ const SignUp = () => {
               render={({ field, fieldState }) => (
                 <Input
                   {...field}
-                  prefix={<CiUser size={20} />}
                   placeholder="First Name"
                   status={fieldState.invalid ? 'error' : ''}
                 />
@@ -79,6 +77,8 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item
+            label="Last Name"
+            className="mb-3"
             status={errors.lastName ? 'error' : ''}
             help={errors.lastName?.message}
           >
@@ -89,7 +89,6 @@ const SignUp = () => {
               render={({ field, fieldState }) => (
                 <Input
                   {...field}
-                  prefix={<CiUser size={20} />}
                   placeholder="Last Name"
                   status={fieldState.invalid ? 'error' : ''}
                 />
@@ -98,6 +97,8 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item
+            label="Phone"
+            className="mb-3"
             status={errors.phone ? 'error' : ''}
             help={errors.phone?.message}
           >
@@ -108,7 +109,6 @@ const SignUp = () => {
               render={({ field, fieldState }) => (
                 <Input
                   {...field}
-                  prefix={<IoIosPhonePortrait size={20} />}
                   placeholder="Phone Number"
                   status={fieldState.invalid ? 'error' : ''}
                 />
@@ -117,6 +117,8 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item
+            label="Password"
+            className="mb-3"
             status={errors.password ? 'error' : ''}
             help={errors.password?.message}
           >
@@ -127,7 +129,6 @@ const SignUp = () => {
               render={({ field, fieldState }) => (
                 <Input.Password
                   {...field}
-                  prefix={<TbPassword size={20} />}
                   type="password"
                   placeholder="Password"
                   status={fieldState.invalid ? 'error' : ''}
@@ -137,6 +138,7 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item
+            label="Confirm Password"
             status={errors.confirmPassword ? 'error' : ''}
             help={errors.confirmPassword?.message}
           >
@@ -147,7 +149,6 @@ const SignUp = () => {
               render={({ field, fieldState }) => (
                 <Input.Password
                   {...field}
-                  prefix={<TbPassword size={20} />}
                   type="password"
                   placeholder="Confirm Password"
                   status={fieldState.invalid ? 'error' : ''}
@@ -170,8 +171,16 @@ const SignUp = () => {
           </div>
         </Form>
       </div>
-      
-      <AuthSideImage />
+
+      <div className="hidden md:block w-full md:w-1/2 h-full bg-slate-200">
+        <div className="w-full h-full flex items-center justify-center">
+          <Image
+            src={signUpGreetings}
+            preview={false}
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </div>
     </div>
   );
 };
