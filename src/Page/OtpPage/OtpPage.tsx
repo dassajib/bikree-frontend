@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 import verifyOtpImg from '../../assets/Friendly Ones - Sitting.png';
 
-const CreateShop = () => {
+const OtpPage = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate('/dashboard');
+    navigate('/create-shop');
   };
 
   return (
@@ -17,7 +17,7 @@ const CreateShop = () => {
         <Form
           onFinish={handleSubmit}
           layout="vertical"
-          name="create-shop"
+          name="OTP"
           className="rounded-xl w-96 p-8 px-10"
           initialValues={{
             remember: true,
@@ -33,21 +33,21 @@ const CreateShop = () => {
             />
           </div>
           <Typography.Title level={4} className="text-center mt-4">
-            <p className="text-2xl font-semibold">Create Shop</p>
+            <p className="text-2xl font-semibold">Verify OTP</p>
           </Typography.Title>
 
           <Form.Item
-            name="createShop"
-            label="Shop Name"
+            name="OTP"
+            label="OTP"
             className="mb-3"
             rules={[
-              { required: true, message: 'Please Enter Your Shop Name' },
+              { required: true, message: 'Please Enter Your OTP' },
               { whitespace: true },
-              { min: 2, message: 'name should be at least 2 characters' },
+              { min: 4, message: 'OTP should be 4 characters' },
             ]}
             hasFeedback
           >
-            <Input placeholder="Shop Name" />
+            <Input placeholder="OTP" />
           </Form.Item>
 
           <Form.Item>
@@ -75,4 +75,4 @@ const CreateShop = () => {
   );
 };
 
-export default CreateShop;
+export default OtpPage;

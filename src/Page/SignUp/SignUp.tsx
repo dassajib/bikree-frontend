@@ -1,8 +1,6 @@
-import { Button, Form, Image, Input, message, Typography } from 'antd';
+import { Button, Form, Image, Input, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { Controller, useForm } from 'react-hook-form';
 
-import { validatePasswords } from '../../utils/validation';
 import { useSignUp } from '../../hooks/useSignUp';
 import { SignupDataInterface } from '../../interface/SignUp';
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
@@ -12,31 +10,19 @@ const SignUp = () => {
   // Initialize the Ant Design form with useForm
   const [form] = Form.useForm();
 
-  // Initialize react-hook-form
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignupDataInterface>();
   const { mutate } = useSignUp();
 
-  const onSubmit = (data: SignupDataInterface) => {
-    const error = validatePasswords(data.password, data.confirmPassword);
-    if (error) {
-      message.error(error);
-      return;
-    }
-
+  const handleSubmit = (data: SignupDataInterface) => {
     mutate(data);
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between h-screen">
+    <div className="flex flex-col md:flex-row items-center justify-between h-screen overflow-hidden">
       <div className="flex justify-center items-center md:w-1/2">
         <Form
           layout="vertical"
           form={form}
-          onFinish={handleSubmit(onSubmit)}
+          onFinish={handleSubmit}
           name="sign-up"
           className="rounded-xl w-96 p-8 px-10"
           initialValues={{
@@ -57,104 +43,79 @@ const SignUp = () => {
           </Typography.Title>
 
           <Form.Item
+            name="firstName"
             label="First Name"
             className="mb-3"
-            status={errors.firstName ? 'error' : ''}
-            help={errors.firstName?.message}
+            rules={[
+              { required: true, message: 'Please Enter Your First Name' },
+              { whitespace: true },
+              { min: 3, message: 'First Name should be at least 3 characters' },
+            ]}
+            hasFeedback
           >
-            <Controller
-              name="firstName"
-              control={control}
-              rules={{ required: 'Please input your First Name!' }}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  placeholder="First Name"
-                  status={fieldState.invalid ? 'error' : ''}
-                />
-              )}
-            />
+            <Input placeholder="First Name" />
           </Form.Item>
 
           <Form.Item
+            name="lastName"
             label="Last Name"
             className="mb-3"
-            status={errors.lastName ? 'error' : ''}
-            help={errors.lastName?.message}
+            rules={[
+              { required: true, message: 'Please Enter Your Last Name' },
+              { whitespace: true },
+              { min: 3, message: 'Last Name should be at least 3 characters' },
+            ]}
+            hasFeedback
           >
-            <Controller
-              name="lastName"
-              control={control}
-              rules={{ required: 'Please input your Last Name!' }}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  placeholder="Last Name"
-                  status={fieldState.invalid ? 'error' : ''}
-                />
-              )}
-            />
+            <Input placeholder="Last Name" />
           </Form.Item>
 
           <Form.Item
+            name="phone"
             label="Phone"
             className="mb-3"
-            status={errors.phone ? 'error' : ''}
-            help={errors.phone?.message}
+            rules={[
+              { required: true, message: 'Please Enter Your Phone' },
+              { whitespace: true },
+              { min: 7, message: 'Phone should be at least 7 characters' },
+            ]}
+            hasFeedback
           >
-            <Controller
-              name="phone"
-              control={control}
-              rules={{ required: 'Please input your Phone Number!' }}
-              render={({ field, fieldState }) => (
-                <Input
-                  {...field}
-                  placeholder="Phone Number"
-                  status={fieldState.invalid ? 'error' : ''}
-                />
-              )}
-            />
+            <Input placeholder="Phone Number" />
           </Form.Item>
 
           <Form.Item
+            name="password"
             label="Password"
             className="mb-3"
-            status={errors.password ? 'error' : ''}
-            help={errors.password?.message}
+            rules={[
+              { required: true, message: 'Please Enter Your Password' },
+              { min: 6, message: 'Password should be at least 6 characters' },
+            ]}
+            hasFeedback
           >
-            <Controller
-              name="password"
-              control={control}
-              rules={{ required: 'Please input your Password!' }}
-              render={({ field, fieldState }) => (
-                <Input.Password
-                  {...field}
-                  type="password"
-                  placeholder="Password"
-                  status={fieldState.invalid ? 'error' : ''}
-                />
-              )}
-            />
+            <Input.Password type="password" placeholder="Password" />
           </Form.Item>
 
           <Form.Item
+            name="confirmPassword"
             label="Confirm Password"
-            status={errors.confirmPassword ? 'error' : ''}
-            help={errors.confirmPassword?.message}
+            dependencies={['password']}
+            rules={[
+              { required: true, message: 'Please Enter Your Password Again' },
+              { min: 6, message: 'Password should be at least 6 characters' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject("Password doesn't match");
+                },
+              }),
+            ]}
+            hasFeedback
           >
-            <Controller
-              name="confirmPassword"
-              control={control}
-              rules={{ required: 'Please confirm your Password!' }}
-              render={({ field, fieldState }) => (
-                <Input.Password
-                  {...field}
-                  type="password"
-                  placeholder="Confirm Password"
-                  status={fieldState.invalid ? 'error' : ''}
-                />
-              )}
-            />
+            <Input.Password type="password" placeholder="Confirm Password" />
           </Form.Item>
 
           <Form.Item>
