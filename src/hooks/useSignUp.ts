@@ -12,7 +12,7 @@ export const useSignUp = (): UseMutationResult<SignupResponseInterface, Error, S
         mutationFn: (data) => signUp(data),
         onSuccess: () => {
             message.success('Successfully Signup!');
-            navigate('/create-shop')
+            navigate('/verify-otp');
         },
         onError: (error: any) => {
             message.error(error?.response?.data?.response_message?.non_field_errors);
