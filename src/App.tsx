@@ -1,8 +1,7 @@
-import React from 'react';
 import './App.css';
 import Index from './Index/Index';
 
-const App: React.FC = () => {
+const App = () => {
   return <Index />;
 };
 

@@ -2,7 +2,7 @@ import { Button, Form, Image, Input, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
-import verifyOtpImg from '../../assets/Friendly Ones - Sitting.png';
+import verifyOtpImg from '../../assets/Fresh Folk - Brainstorming.png';
 
 const CreateShop = () => {
   const navigate = useNavigate();

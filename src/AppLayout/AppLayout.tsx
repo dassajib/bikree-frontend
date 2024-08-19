@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import bikreeLogo from '../assets/bikreeLogo.jpeg';
 import { AiFillFile } from 'react-icons/ai';
 import { MdDashboard } from 'react-icons/md';
 import { CiShop } from 'react-icons/ci';
@@ -7,6 +6,8 @@ import { FaHandHoldingDollar } from 'react-icons/fa6';
 import { MdInventory } from 'react-icons/md';
 import { Layout, Menu, theme, Typography, Image, Flex } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
+
+import bikreeLogo from '../assets/bikreeLogo.jpeg';
 
 const { Header, Content, Footer, Sider } = Layout;
 

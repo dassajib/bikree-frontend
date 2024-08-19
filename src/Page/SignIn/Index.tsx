@@ -52,6 +52,7 @@ const SignIn = () => {
               },
               { min: 7, message: 'Phone should be at least 7 characters' },
             ]}
+            hasFeedback
           >
             <Input placeholder="Phone Number" />
           </Form.Item>
@@ -65,6 +66,7 @@ const SignIn = () => {
               },
               { min: 6, message: 'Password should be at least 6 characters' },
             ]}
+            hasFeedback
           >
             <Input.Password type="password" placeholder="Password" />
           </Form.Item>
