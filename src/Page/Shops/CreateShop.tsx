@@ -1,14 +1,15 @@
 import { Button, Form, Image, Input, Typography } from 'antd';
-import { useNavigate } from 'react-router-dom';
 
 import bikreeLogo from '../../assets/bikreeLogo.jpeg';
 import verifyOtpImg from '../../assets/Fresh Folk - Brainstorming.png';
+import { CreateShopDataInterface } from '../../interface/Shop';
+import { useCreateShop } from '../../hooks/useShop';
 
 const CreateShop = () => {
-  const navigate = useNavigate();
+  const { mutate, isPending } = useCreateShop();
 
-  const handleSubmit = () => {
-    navigate('/dashboard');
+  const handleSubmit = (data: CreateShopDataInterface) => {
+    mutate(data);
   };
 
   return (
@@ -37,7 +38,7 @@ const CreateShop = () => {
           </Typography.Title>
 
           <Form.Item
-            name="createShop"
+            name="name"
             label="Shop Name"
             className="mb-3"
             rules={[
@@ -55,8 +56,9 @@ const CreateShop = () => {
               type="primary"
               htmlType="submit"
               className="w-full font-bold"
+              disabled={isPending}
             >
-              Submit
+              {isPending ? 'Creating' : 'Submit'}
             </Button>
           </Form.Item>
         </Form>

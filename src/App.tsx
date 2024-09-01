@@ -1,4 +1,3 @@
-import './App.css';
 import Index from './Index/Index';
 
 const App = () => {

@@ -4,10 +4,11 @@ import { MdDashboard } from 'react-icons/md';
 import { CiShop } from 'react-icons/ci';
 import { FaHandHoldingDollar } from 'react-icons/fa6';
 import { MdInventory } from 'react-icons/md';
-import { Layout, Menu, theme, Typography, Image, Flex } from 'antd';
+import { Layout, Menu, Typography, Image, Flex } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
 
 import bikreeLogo from '../assets/bikreeLogo.jpeg';
+import SignOutButton from '../Components/SignOutButton/SignOutButton';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -41,13 +42,9 @@ const items: MenuItem[] = [
 
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      {/* side bar start */}
+    <Layout className="min-h-screen">
       <Sider
         collapsible
         collapsed={collapsed}
@@ -68,11 +65,8 @@ const AppLayout = () => {
               className="object-cover rounded"
             />
             {!collapsed && (
-              <Typography.Title
-                level={4}
-                style={{ color: 'white', marginTop: '10px' }}
-              >
-                Bikree
+              <Typography.Title level={4} className="mt-2">
+                <span className="text-white">Bikree</span>
               </Typography.Title>
             )}
           </Flex>
@@ -81,33 +75,22 @@ const AppLayout = () => {
           theme="dark"
           defaultSelectedKeys={['1']}
           items={items}
-          className='mt-4'
+          className="mt-4"
         />
       </Sider>
-      {/* side bar end */}
+      
       <Layout>
-        {/* header */}
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-            borderBlockEnd: '1px solid rgba(5, 5, 5, 0.07)',
-          }}
-        />
-        {/* main content */}
-        <Content style={{ margin: '0 16px' }}>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {<Outlet />}
+        <Header className="sticky top-0 z-10 bg-white border-b-[2px] border-b-[rgba(5,5,5,0.07)]">
+          <div className="flex justify-end mt-4">
+            <SignOutButton />
           </div>
+        </Header>
+        
+        <Content className="bg-white">
+          <div className="md:p-4 md:m-3 p-2 rounded-md">{<Outlet />}</div>
         </Content>
-        <Footer className='text-center'>
+
+        <Footer className="flex justify-center items-center h-3">
           ©{new Date().getFullYear()} Created by Bikree
         </Footer>
       </Layout>
