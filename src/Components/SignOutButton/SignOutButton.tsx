@@ -4,7 +4,7 @@ import { GoSignOut } from 'react-icons/go';
 
 import { useAuthStore } from '../../store/authStore';
 
-const SIgnOutButton = () => {
+const SignOutButton = () => {
   const { clearToken } = useAuthStore();
   const navigate = useNavigate();
 
@@ -31,4 +31,4 @@ const SIgnOutButton = () => {
   );
 };
 
-export default SIgnOutButton;
+export default SignOutButton;

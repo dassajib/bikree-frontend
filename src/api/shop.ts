@@ -15,9 +15,10 @@ export const getShops = async () => {
 }
 
 export const createShop = async (data: CreateShopDataInterface) => {
-    await axios.post(CREATE_SHOP_URL, data, {
+    const response = await axios.post(CREATE_SHOP_URL, data, {
         headers: {
             Authorization: `Bearer ${access}`,
         }
     })
+    return response.data;
 }

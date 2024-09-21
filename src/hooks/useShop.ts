@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 
@@ -13,18 +13,16 @@ export const useShopList = () => {
 }
 
 export const useCreateShop = (): UseMutationResult<CreateShopResponseInterface, Error, CreateShopDataInterface> => {
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
 
     return useMutation<CreateShopResponseInterface, Error, CreateShopDataInterface>({
         mutationFn: (data: CreateShopDataInterface) => createShop(data),
-        onSuccess: (data) => {
+        onSuccess: () => {
+            // invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ["shopList"] })
             navigate("/dashboard");
             message.success("New Shop Created!");
-            console.log(data.data);
         },
-        onError: (error: any) => {
-            message.error(error.response?.data?.response_message?.non_field_errors[0]
-            )
-        }
     })
 }

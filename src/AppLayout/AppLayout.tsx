@@ -78,14 +78,14 @@ const AppLayout = () => {
           className="mt-4"
         />
       </Sider>
-      
+
       <Layout>
         <Header className="sticky top-0 z-10 bg-white border-b-[2px] border-b-[rgba(5,5,5,0.07)]">
           <div className="flex justify-end mt-4">
             <SignOutButton />
           </div>
         </Header>
-        
+
         <Content className="bg-white">
           <div className="md:p-4 md:m-3 p-2 rounded-md">{<Outlet />}</div>
         </Content>
