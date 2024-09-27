@@ -10,7 +10,7 @@ const Shops = () => {
 
   if (isPending)
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-4">
         <Spin size="large" />
       </div>
     );
@@ -28,12 +28,18 @@ const Shops = () => {
                 </span>
                 <div className="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
                   <h1>Shop name : {shop.name}</h1>
+                  <h1>
+                    Care Of :{' '}
+                    {shop.owner.full_name.first +
+                      ' ' +
+                      shop.owner.full_name.last}
+                  </h1>
                 </div>
-                <div className="pt-5 text-base font-semibold leading-7">
+                {/* <div className="pt-5 text-base font-semibold leading-7">
                   <div className="text-sky-500 transition-all duration-300 group-hover:text-white">
                     Read the docs &rarr;
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </Link>

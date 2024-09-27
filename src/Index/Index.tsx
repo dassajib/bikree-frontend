@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import SignIn from '../Page/SignIn/Index';
 import SignUp from '../Page/SignUp/Index';
 import AppLayout from '../AppLayout/AppLayout';
-import Dashboard from '../Components/Dashboard/Dashboard';
+import Dashboard from '../Components/Dashboard/Index';
 import Shops from '../Page/Shops/Index';
 import Inventory from '../Components/Inventory/Inventory';
 import Sales from '../Components/Sales/Sales';
